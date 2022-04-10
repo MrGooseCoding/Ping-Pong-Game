@@ -2,6 +2,7 @@ import turtle
 import random
 from time import sleep
 
+# Ball class
 class ball(turtle.Turtle):
     def __init__(self) -> None:
         super().__init__()
@@ -13,6 +14,7 @@ class ball(turtle.Turtle):
         self.speed(0)
         self.color('white') 
 
+# Paddle class
 class paddle(turtle.Turtle):
     def __init__(self, side):
         super().__init__()
@@ -46,7 +48,7 @@ class paddle(turtle.Turtle):
         self.state = None
 
 wn = turtle.Screen()
-wn.title("Ping-Pong by @MrGooseCoding")
+wn.title("Pong by @MrGooseCoding")
 wn.setup(height=600, width=800)
 wn.bgcolor('black')
 wn.tracer(0, 0)
@@ -54,8 +56,10 @@ paddle_a = paddle('left')
 paddle_b = paddle('right')
 ball = ball()
 
+# Loop
 while True:
     wn.listen()
+    # Listening for the key press
     wn.onkeypress(paddle_a.change_state_up, 'w')
     wn.onkeyrelease(paddle_a.change_state_none, 'w')
     wn.onkeypress(paddle_a.change_state_down, 's')
@@ -68,8 +72,12 @@ while True:
     wn.onkeyrelease(paddle_b.change_state_none, 'Down')
     paddle_b.up()
     paddle_b.down()
+    
+    # Moving the ball
     ball.sety(ball.ycor() + ball.dy)
     ball.setx(ball.xcor() + ball.dx)
+
+    #Border Checking
     if ball.ycor() > 290:
         ball.dy *= -1
 
@@ -84,6 +92,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
+    # Colisions
     if (ball.xcor() > 340 and ball.xcor() < 350 and(ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() -50)):
         ball.setx(340)
         ball.dx *= -1 if ball.ycor() > paddle_b.ycor() -10 and ball.ycor() < paddle_b.ycor() +10 else -1*random.randrange(5, 15)/10
