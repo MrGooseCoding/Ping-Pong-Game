@@ -92,7 +92,7 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    # Colisions
+    # Collisions
     if (ball.xcor() > 340 and ball.xcor() < 350 and(ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() -50)):
         ball.setx(340)
         ball.dx *= -1 if ball.ycor() > paddle_b.ycor() -10 and ball.ycor() < paddle_b.ycor() +10 else -1*random.randrange(5, 15)/10
