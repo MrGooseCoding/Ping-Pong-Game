@@ -9,8 +9,8 @@ class ball(turtle.Turtle):
         self.penup()
         self.shape('circle')
         self.goto(0, 0)
-        self.dx = 1
-        self.dy = 1
+        self.dx = 0.25
+        self.dy = 0.25
         self.speed(0)
         self.color('white') 
 
@@ -29,13 +29,13 @@ class paddle(turtle.Turtle):
     def up(self):
         if self.state == 'Up':
             y = self.ycor()
-            self.goto(self.xcor(), y+2)
+            self.goto(self.xcor(), y+0.5)
             pass
 
     def down(self):
         if self.state == 'Down':
             y = self.ycor()
-            self.goto(self.xcor(), y-2)
+            self.goto(self.xcor(), y-0.5)
             pass
 
     def change_state_up(self):
